@@ -65,6 +65,7 @@ en:
         ordergroup: Ordergroup
         user: Entered by
       financial_transaction_class:
+        ignore_for_account_balance: Ignore for account balance
         name: Name
       financial_transaction_type:
         bank_account: Bank Account
@@ -603,6 +604,7 @@ en:
       use_boxfill: When enabled, near end of an order, members are only able to change their order when increases the total amount ordered. This helps to fill any remaining boxes. You still need to set a box-fill date for the orders.
       use_iban: When enabled, supplier and user provide an additonal field for storing the international bank account number.
       use_nick: Show and use nicknames instead of real names. When enabling this, please check that each user has a nickname.
+      use_self_service: When enabled, members are able to use selected balancing functions on their own.
       webstats_tracking_code: Tracking code for web analytics (like Piwik or Google analytics). Leave empty for no tracking.
     keys:
       applepear_url: Apple system help URL
@@ -660,6 +662,7 @@ en:
       use_boxfill: Box-fill phase
       use_iban: Use IBAN
       use_nick: Use nicknames
+      use_self_service: Use self service
       webstats_tracking_code: Tracking code
     tabs:
       applications: Apps
@@ -824,6 +827,7 @@ en:
         name: Supplier
         no_closed_orders: At the moment there are no closed orders.
         state: State
+        show_all: (show all)
       summary:
         changed: Data was changed!
         duration: From %{starts} till %{ends}
@@ -1146,6 +1150,7 @@ en:
         since: "(member for %{when})"
         title: "%{user}"
     reference_calculator:
+      transaction_types_headline: Purpose
       placeholder: Please enter the amounts you want to tranfser in every field first, to see the reference you should use for that transaction.
       text0: Please transfer
       text1: with the reference
@@ -1291,6 +1296,18 @@ en:
 
 
         Kind regards from %{foodcoop}.
+    order_received:
+      subject: 'Order delivery registered: %{name}'
+      text0: |
+        Dear %{ordergroup},
+
+        the order for "%{order}" has been received.
+      abundant_articles: Received too much
+      scarce_articles: Received too little
+      article_details: |
+        o %{name}:
+        -- Ordered: %{ordered} x %{unit}
+        -- Received: %{received} x %{unit}
     order_result_supplier:
       subject: New order for %{name}
       text: |
@@ -1336,7 +1353,7 @@ en:
       text1: |
         In order to choose a new password follow this link: %{link}
         This link works only once and expires on %{expires}.
-        You can always use "Forgot password?" to get an new link.
+        You can always use "Forgot password?" to get a new link.
 
 
         Kind regards from %{foodcoop}.
@@ -1627,6 +1644,7 @@ en:
         notify:
           negative_balance: Inform me when my ordergroup has a negative balance.
           order_finished: Inform me about my order result (when the order is closed).
+          order_received: Inform me about delivery details (after order has been received).
           upcoming_tasks: Remind me of upcoming tasks.
         profile:
           email_is_public: Email is visible for other members.
