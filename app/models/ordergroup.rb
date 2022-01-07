@@ -60,11 +60,11 @@ class Ordergroup < Group
   end
 
   def value_of_open_orders(exclude = nil)
-    group_orders.in_open_orders.reject { |go| go == exclude }.collect(&:price).sum
+    group_orders.in_open_orders.reject { |go| go == exclude || go.price < 0 }.collect(&:price).sum
   end
 
   def value_of_finished_orders(exclude = nil)
-    group_orders.in_finished_orders.reject { |go| go == exclude }.collect(&:price).sum
+    group_orders.in_finished_orders.reject { |go| go == exclude || go.price < 0 }.collect(&:price).sum
   end
 
   # Returns the available funds for this order group (the account_balance minus price of all non-closed GroupOrders of this group).
