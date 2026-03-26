@@ -1,5 +1,9 @@
 class Api::V1::PickupController < Api::V1::BaseController
- 
+  
+  skip_before_action :verify_authenticity_token 
+  # This endpoint is an API, don’t enforce CSRF
+  # prevents foodsoft CSRF error if API is called via AJAX request
+
   def index   
    # get group orders for ordergroup with ordergroup_id
     ordergroup_id = params.fetch(:ordergroup_id, nil) || 
@@ -53,7 +57,8 @@ class Api::V1::PickupController < Api::V1::BaseController
               tolerance: goa.tolerance, 
               received: goa.result,   
             }
-          }
+          },
+          comments: go.order.comments,
         }
       }         
     }
