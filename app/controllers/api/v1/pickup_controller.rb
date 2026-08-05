@@ -54,7 +54,7 @@ class Api::V1::PickupController < Api::V1::BaseController
               received: goa.result,   
             }
           },
-          comments: goa.order.comments,
+          comments: go.order.comments,
         }
       }         
     }
